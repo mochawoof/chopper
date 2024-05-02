@@ -10,7 +10,8 @@ import com.formdev.flatlaf.FlatDarkLaf;
 public class Main {
     public static JFrame f;
     public static final String FOLDER = "C:\\Windows\\Temp\\chopper";
-    public static final String UPDATE_URL = "https://github.com/mochawoof/chopper/releases/latest/download/chopper.jar";
+    private static final String GITHUB_URL = "https://github.com/mochawoof/chopper";
+    public static final String UPDATE_URL = GITHUB_URL + "/releases/latest/download/chopper.jar";
     public static final String VERSION = "1.0.0";
     public static File folderFile;
     public static JProgressBar bar;
@@ -84,14 +85,14 @@ public class Main {
         f.add(p, BorderLayout.CENTER);
         
         JButton open = new JButton("Open Folder");
-        open.setToolTipText("Open the app folder");
+        open.setToolTipText("Open the app folder.");
         open.addActionListener(e -> {
             openInExplorer(folderFile);
         });
         p.add(open);
         
         JButton backup = new JButton("Backup Folder");
-        backup.setToolTipText("Compress the app folder into a zip file and save it in your Downloads folder");
+        backup.setToolTipText("Compress the app folder into a zip file and save it in your Downloads folder.");
         backup.addActionListener(e -> {
             new Thread(() -> {
                 Zipper.zip(folderFile.listFiles(), Zipper.DATE, Paths.get(System.getProperty("user.home")).resolve("Downloads"));
@@ -100,7 +101,7 @@ public class Main {
         p.add(backup);
         
         JButton clean = new JButton("Clean Folder");
-        clean.setToolTipText("Delete everything in the app folder");
+        clean.setToolTipText("Delete everything in the app folder.");
         clean.addActionListener(e -> {
             if (askBox("Are you sure you want to delete EVERYTHING in the app folder? This can't be undone!", "Warning") == JOptionPane.OK_OPTION) {
                 new Thread(() -> {
@@ -113,16 +114,16 @@ public class Main {
         p.add(clean);
         
         JButton update = new JButton("Update");
-        update.setToolTipText("Download the latest version from GitHub");
+        update.setToolTipText("Download the latest version from GitHub.");
         update.addActionListener(e -> {
             openInBrowser(UPDATE_URL);
         });
         p.add(update);
         
         JButton help = new JButton("?");
-        help.setToolTipText("About chopper");
+        help.setToolTipText("About chopper.");
         help.addActionListener(e -> {
-            box("Tool to save and backup files to Temp.\n\nchopper is shareware under the terms of the GNU GPL v3.", "About chopper");
+            box("Tool to save and backup files to Temp.\n\nchopper is freeware under the terms of the GNU GPL v3.\n" + GITHUB_URL, "About chopper");
         });
         p.add(help);
         
