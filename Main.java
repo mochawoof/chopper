@@ -72,7 +72,7 @@ public class Main {
         f.setResizable(false);
         f.setLayout(new BorderLayout());
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setTitle("chopper v" + VERSION);
+        f.setTitle("chopper " + VERSION);
         
         bar = new JProgressBar();
         bar.setStringPainted(true);
